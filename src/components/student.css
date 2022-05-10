@@ -1,0 +1,45 @@
+.container {
+  padding: 40px;
+}
+
+.student-register{
+  width: 100%;
+  background-color: #eee;
+}
+
+.student-form-title {
+  padding: 15px;
+  background-color: #343A40;
+  color: #ffffff;
+}
+
+.student-form{
+  padding: 20px 15px;
+}
+
+.form-field {
+  display: inline-block;
+  width: 50%;
+  padding: 15px 0;
+}
+
+.form-input {
+  display: block;
+  width: 80%;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  line-height: 1.5;
+  padding: 4px 8px;
+}
+
+.submit-btn {
+  display: block;
+  padding: 15px;
+  background-color: #20E3B2;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  cursor: pointer;
+}
