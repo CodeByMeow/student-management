@@ -26,17 +26,20 @@ class StudentForm extends Component {
       mark_point: {
         title: 'điểm toán',
         value: 0,
-        type: 'number',
+        type: 'text',
+        isCalc: true,
       },
       physical_point: {
         title: 'điểm lý',
         value: 0,
-        type: 'number',
+        type: 'text',
+        isCalc: true,
       },
       chemistry_point: {
         title: 'điểm hóa',
         value: 0,
-        type: 'number',
+        type: 'text',
+        isCalc: true,
       },
     }
   }

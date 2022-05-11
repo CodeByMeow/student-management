@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import StudentForm from './StudentForm';
+import StudentList from './StudentList';
 import './student.css';
+
 class StudentMangement extends Component {
   state = {
     students: [],
@@ -16,6 +18,7 @@ class StudentMangement extends Component {
     return (
       <div className='container'>
         <StudentForm onStudentRegister={this.onStudentRegister} />
+        <StudentList students={this.state.students} />
       </div>
     );
   }
