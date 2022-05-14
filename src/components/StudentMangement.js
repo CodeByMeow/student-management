@@ -18,11 +18,14 @@ class StudentMangement extends Component {
   }
 
   onSortHandler = (sort) => this.setState({ sort: +sort })
+
+  onDeleteHandler = (id) => this.setState({ students: this.state.students.filter(v => v.id.value !== id) })
+
   render() {
     return (
       <div className='container'>
         <StudentForm onStudentRegister={this.onStudentRegister} />
-        <StudentList students={this.state.students} sort={this.state.sort} onSortHandler={this.onSortHandler} />
+        <StudentList students={this.state.students} sort={this.state.sort} onSortHandler={this.onSortHandler} onDeleteHandler={this.onDeleteHandler} />
       </div>
     );
   }

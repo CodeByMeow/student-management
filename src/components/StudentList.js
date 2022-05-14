@@ -4,7 +4,7 @@ import { SORT_BY_NAME, SORT_GPA_DOWN, SORT_GPA_UP } from '../utils/constant';
 class StudentList extends Component {
 
   render() {
-    const { sort, students, onSortHandler } = this.props;
+    const { sort, students, onSortHandler, onDeleteHandler } = this.props;
     switch (sort) {
       case SORT_GPA_UP: students.sort((a, b) => a.gpa - b.gpa); break;
       case SORT_GPA_DOWN: students.sort((a, b) => b.gpa - a.gpa); break;
@@ -17,7 +17,8 @@ class StudentList extends Component {
         <td>{phone.value}</td>
         <td>{email.value}</td>
         <td>{gpa}</td>
-      </tr>
+        <td><button onClick={() => onDeleteHandler(id.value)} className="btn">Delete</button></td>
+      </tr >
     ))
     return (
       <div className='student-list'>
@@ -34,6 +35,7 @@ class StudentList extends Component {
               <td>số điện thoại</td>
               <td>email</td>
               <td>Điểm TB</td>
+              <td></td>
             </tr>
           </thead>
           <tbody>

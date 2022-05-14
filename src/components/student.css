@@ -83,3 +83,10 @@
   cursor: pointer;
 }
 
+.btn {
+  padding: 10px 15px;
+  outline: none;
+  border: 1px solid #20E3B2;
+  border-radius:10px;
+  cursor: pointer;
+}

@@ -58,7 +58,7 @@ class StudentForm extends Component {
   onSubmitHandler = (e) => {
     const { student } = this.state;
     e.preventDefault();
-    const subject = Object.values(student).reduce((t, v) => (v.isSubject ? [...t, v.value] : t), []);
+    const subject = Object.values(student).reduce((t, v) => v.isSubject ? [...t, v.value] : t, []);
     const gpa = (subject.reduce((t, v) => +t + +v) / subject.length).toFixed(1);
     this.props.onStudentRegister({ ...student, gpa: +gpa });
     this.setState({
@@ -81,7 +81,7 @@ class StudentForm extends Component {
         email: {
           title: 'email',
           value: '',
-          type: 'text',
+          type: 'email',
         },
         mark_point: {
           title: 'điểm toán',
