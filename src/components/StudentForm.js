@@ -21,7 +21,7 @@ class StudentForm extends Component {
       email: {
         title: 'email',
         value: '',
-        type: 'text',
+        type: 'email',
       },
       mark_point: {
         title: 'điểm toán',
