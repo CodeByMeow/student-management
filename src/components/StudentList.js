@@ -1,44 +1,30 @@
 import React, { Component } from 'react';
+import { SORT_BY_NAME, SORT_GPA_DOWN, SORT_GPA_UP } from '../utils/constant';
 
 class StudentList extends Component {
-  state = {
-    tempStudents: this.props.students,
-  }
-  average = arr => arr.reduce((a, b) => a += b, 0) / arr.length;
-  onSelectHandler = query => {
-    const tempStudents = [...this.state.tempStudents].map(student => {
-      const subjects = Object.values(student).filter(prop => prop.isCalc);
-      const subjectsPoint = subjects.map(subject => parseInt(subject.value));
-      return {
-        ...student,
-        gpa: this.average(subjectsPoint).toFixed(1)
-      }
-    });
-    switch (query) {
-      case 'gpa-up': tempStudents.sort((a, b) => a.gpa - b.gpa);
-        break;
-    }
-    this.setState({
-      tempStudents,
-    })
-
-  }
 
   render() {
-    const tempStudents = [...this.props.students].map(student => {
-      const subjects = Object.values(student).filter(prop => prop.isCalc);
-      const subjectsPoint = subjects.map(subject => parseInt(subject.value));
-      return {
-        ...student,
-        gpa: this.average(subjectsPoint).toFixed(1)
-      }
-    });
+    const { sort, students, onSortHandler } = this.props;
+    switch (sort) {
+      case SORT_GPA_UP: students.sort((a, b) => a.gpa - b.gpa); break;
+      case SORT_GPA_DOWN: students.sort((a, b) => b.gpa - a.gpa); break;
+      case SORT_BY_NAME: students.sort((a, b) => a.fullname.value > b.fullname.value ? 1 : (b.fullname.value > a.fullname.value ? -1 : 0)); break;
+    }
+    const studentContent = students.map(({ id, fullname, phone, email, gpa }, index) => (
+      <tr key={index}>
+        <td>{id.value}</td>
+        <td>{fullname.value}</td>
+        <td>{phone.value}</td>
+        <td>{email.value}</td>
+        <td>{gpa}</td>
+      </tr>
+    ))
     return (
       <div className='student-list'>
-        <select name='table-sort' className='table-sort' onChange={(e) => this.onSelectHandler(e.target.value)}>
-          <option value="gpa-up">GPA tăng dần</option>
-          <option value="gpa-down">GPA giảm dần</option>
-          <option value="fullname">Họ tên</option>
+        <select name='table-sort' className='table-sort' onChange={(e) => onSortHandler(e.target.value)}>
+          <option value={SORT_GPA_UP}>GPA tăng dần</option>
+          <option value={SORT_GPA_DOWN}>GPA giảm dần</option>
+          <option value={SORT_BY_NAME}>Họ tên</option>
         </select>
         <table>
           <thead>
@@ -51,19 +37,7 @@ class StudentList extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              tempStudents.map(({ id, fullname, email, phone, gpa }) => {
-                return (
-                  <tr key={id.value}>
-                    <td>{id.value}</td>
-                    <td>{fullname.value}</td>
-                    <td>{phone.value}</td>
-                    <td>{email.value}</td>
-                    <td className="text-center">{gpa}</td>
-                  </tr>
-                )
-              })
-            }
+            {studentContent}
           </tbody>
         </table>
       </div>
